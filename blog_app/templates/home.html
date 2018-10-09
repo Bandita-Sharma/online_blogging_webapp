@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class = "container" style="margin:2%;">
+  <div class = "row">
+    <div class = "col-md-8" style = "background-color:lavenderblush;">
+      {% for blog in search %}
+      <div class="jumbotron" style="height:370px;">
+      <fieldset class = "scheduler-border">
+        <legend class = "scheduler-border mb-4">
+          <a href="{{url_for('post', l=blog['title'])}}" class="link"><h1>{{blog.title}}</h1></a>
+        </legend>
+        <a href="{{url_for('date', dt=blog['date'])}}"><small class="text-muted">{{blog.date}}</small></a>
+            <br>
+            <strong><a href="{{url_for('tags', tag=blog['tag'])}}"><small class="text-muted">{{blog.tag}}</small></a></strong>
+            <hr style="width: 70px;margin-left: 0%;">
+            <div class="form-group" style="height:150px;">
+                <pre style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{blog.content}}</pre>
+            </div>
+        </fieldset>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class = "col-md-4" style = "background-color:lavender;">
+      <div class = "jumbotron">
+        <fieldset class = "form-group">
+          <legend class = "border bottom mb-4"><h3 class = "mt-5">Tags</h3></legend>
+          <div class = "list-group">
+            <a href="{{url_for('tags', tag='Entertainment')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Entertainment<span class="badge badge-pill badge-success">{{tags.entertain}}</span></a>
+            <a href="{{url_for('tags', tag='Technology')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Technology<span class="badge badge-pill badge-success">{{tags.tech}}</span></a>
+            <a href="{{url_for('tags', tag='Facts')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Facts and Figures<span class="badge badge-pill badge-success">{{tags.fact}}</span></a>
+            <a href="{{url_for('tags', tag='Movies')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Movies<span class="badge badge-pill badge-success">{{tags.mov}}</span></a>
+            <a href="{{url_for('tags', tag='Sports')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Sports<span class="badge badge-pill badge-success">{{tags.spo}}</span></a>
+            <a href="{{url_for('tags', tag='Others')}}" class="list-group-item justify-content-between align-items-center d-flex list-group-item-action">Others<span class="badge badge-pill badge-success">{{tags.oth}}</span></a>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
